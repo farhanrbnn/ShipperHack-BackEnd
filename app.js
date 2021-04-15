@@ -18,7 +18,8 @@ const inboundRoutes = require('./routes/inboundRoutes')
 
 mongoose.connect(process.env.DB_CONNECT,{
 	useNewUrlParser: true,
-	useUnifiedTopology: true
+	useUnifiedTopology: true,
+	useFindAndModify: false
 })
 .then(() => {
 	console.log('dbconnected')

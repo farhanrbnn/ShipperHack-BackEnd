@@ -67,7 +67,34 @@ const get_all_inbound = async (req, res) => {
 	}
 }
 
+const update_inbound = async (req,res) => {
+	try {
+		const query = {id:req.body.id}
+		const updateId = {
+			is_dispatch:req.body.status
+		}
+
+		const updateData = await Inbound.findByIdAndUpdate(req.body.id, updateId)
+		console.log(updateData)
+		if(updateData){
+			return res.status(200).send({
+				'message':'success'
+			})
+		} else {
+			return res.status(400).send({
+				'message':'update failed'
+			})
+		}
+		
+	} catch (err) {
+		return res.status(500).send({
+			'message':err
+		})
+	}
+}
+
 module.exports = {
 	input_inbound,
-	get_all_inbound
+	get_all_inbound,
+	update_inbound
 }
