@@ -15,6 +15,7 @@ let corsOption = {
 app.use(cors(corsOption))
 // import routes
 const inboundRoutes = require('./routes/inboundRoutes')
+const locationBinRoutes = require('./routes/locationbinRoutes')
 
 mongoose.connect(process.env.DB_CONNECT,{
 	useNewUrlParser: true,
@@ -32,6 +33,8 @@ app.get('/api/v1', (req, res) => {
 	return res.status(200).send("OK")
 })
 app.use('/api/v1', inboundRoutes)
+app.use('/api/v1', locationBinRoutes)
+
 
 app.listen(5000, () => {
 	console.log('server listening')
